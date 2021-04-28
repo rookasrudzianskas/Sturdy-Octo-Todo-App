@@ -30,18 +30,24 @@ export default {
           id: 1,
           name: 'GO to shop',
           completed: false,
+          deuDate: '2021/04/23',
+          dueTime: '14:34',
         },
 
         {
           id: 2,
           name: 'Get to bananas',
           completed: false,
+          deuDate: '2021/04/24',
+          dueTime: '14:35',
         },
 
         {
           id: 3,
           name: 'Go to home',
           completed: false,
+          deuDate: '2021/04/26',
+          dueTime: '14:33',
         },
       ]
     }
