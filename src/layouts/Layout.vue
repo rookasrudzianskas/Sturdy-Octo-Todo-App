@@ -3,12 +3,17 @@
     <q-header elevated>
       <q-toolbar>
 
+<!-- header of todo-->
+
         <q-toolbar-title class="absolute-center">
           Awesome Todo 🚀
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
+<!-- end of header -->
+
+<!--    start of footte -->
 
     <q-footer>
       <q-tabs>
@@ -21,6 +26,9 @@
 
       </q-tabs>
     </q-footer>
+<!--    end of footer -->
+
+<!--    left drawer -->
 
     <q-drawer
       v-model="leftDrawerOpen"
@@ -45,6 +53,8 @@
       </q-list>
     </q-drawer>
 
+<!--    end of left drawer -->
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -55,6 +65,7 @@
 export default {
   data() {
     return {
+      // different pages todo, settings
       navs: [
         {
           label: 'Todo',

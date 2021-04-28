@@ -4,6 +4,8 @@
       separator
       bordered>
 
+<!-- one task, and the loop to make the tasks form arrat -->
+
       <q-item
         v-for="task in tasks"
         :key="task.id"
@@ -18,6 +20,10 @@
         <q-item-section>
           <q-item-label :class="{ 'text-strikethrough' : task.completed}">{{ task.name }}</q-item-label>
         </q-item-section>
+
+<!--        end of task -->
+
+<!--        the right side of tasks -->
 
         <q-item-section side>
           <div class="row">
@@ -34,6 +40,8 @@
           </div>
         </q-item-section>
 
+<!--        the end f right side of tasks -->
+
       </q-item>
 
     </q-list>
@@ -44,31 +52,7 @@
 export default {
   data() {
     return {
-      tasks: [
-        {
-          id: 1,
-          name: 'GO to shop',
-          completed: false,
-          dueDate: '2021/04/23',
-          dueTime: '14:34',
-        },
-
-        {
-          id: 2,
-          name: 'Get to bananas',
-          completed: false,
-          dueDate: '2021/04/24',
-          dueTime: '14:35',
-        },
-
-        {
-          id: 3,
-          name: 'Go to home',
-          completed: false,
-          dueDate: '2021/04/26',
-          dueTime: '14:33',
-        },
-      ]
+      tasks: []
     }
   }
 }
