@@ -17,7 +17,7 @@ const state = {
 			completed: false,
 			dueDate: '2019/05/14',
 			dueTime: '16:00'
-		}	
+		}
 	}
 }
 
@@ -26,7 +26,9 @@ const mutations = {
 }
 
 const actions = {
-
+  updateTask() {
+    console.log("update task action")
+  }
 }
 
 const getters = {

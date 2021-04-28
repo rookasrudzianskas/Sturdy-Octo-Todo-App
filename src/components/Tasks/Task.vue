@@ -1,11 +1,11 @@
 <template>
-  <q-item 
-  	@click="task.completed = !task.completed"
+  <q-item
+  	@click="updateTask"
   	:class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
   	clickable
   	v-ripple>
     <q-item-section side top>
-      <q-checkbox v-model="task.completed" />
+      <q-checkbox v-model="task.completed" class="no-pointer-events" />
     </q-item-section>
 
     <q-item-section>
@@ -18,13 +18,13 @@
     <q-item-section side>
     	<div class="row">
     		<div class="column justify-center">
-		    	<q-icon 
+		    	<q-icon
 		    		name="event"
 		    		size="18px"
 		    		class="q-mr-xs" />
     		</div>
 	    	<div class="column">
-          <q-item-label 
+          <q-item-label
           	class="row justify-end"
           	caption>
           	{{ task.dueDate }}
@@ -41,11 +41,15 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
 	export default {
-		props: ['task', 'id']
+		props: ['task', 'id'],
+    methods: {
+		  ...mapActions('tasks', ['updateTask'])
+    }
 	}
 </script>
 
 <style>
-	
+
 </style>
