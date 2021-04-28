@@ -44,21 +44,12 @@
       <q-list>
     <q-item-label header>Navigation</q-item-label>
 
-        <q-item clickable to="/" exact>
+        <q-item v-for="nav in navs" clickable :to="nav.to" exact>
           <q-item-section avatar>
-            <q-icon name="list" />
+            <q-icon :name="nav.icon" />
           </q-item-section>
           <q-item-section>
-            Todo
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable to="/settings" exact>
-          <q-item-section avatar>
-            <q-icon name="settings" />
-          </q-item-section>
-          <q-item-section>
-            Settings
+            {{ nav.label }}
           </q-item-section>
         </q-item>
 
@@ -73,6 +64,24 @@
 
 <script>
 export default {
+  data() {
+    return {
+      navs: [
+        {
+          label: 'Todo',
+          icon: 'list',
+          to: '/',
+        },
+
+        {
+          label: 'Settings',
+          icon: 'settings',
+          to: '/settings',
+        },
+
+      ]
+    }
+  }
 
 }
 </script>
