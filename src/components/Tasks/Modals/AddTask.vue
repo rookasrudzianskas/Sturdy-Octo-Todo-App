@@ -12,71 +12,77 @@
         round
         dense
         icon="close" />
-
     </q-card-section>
-<!-- task name input field-->
-    <q-card-section>
 
-      <div class="row q-mb-sm">
-      <q-input
-        outlined
-        v-model="taskToSubmit.name"
-        class="col"
-        label="Task name" />
-      </div>
+<!--    form element -->
 
-<!-- task data input field-->
-      <div class="row q-mb-sm">
+    <q-form @submit.prevent="submitForm">
 
-      <q-input
-        outlined
-        label="Due Date"
-        v-model="taskToSubmit.dueDate"
-        >
-        <template v-slot:append>
-          <q-icon name="event" class="cursor-pointer">
-            <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-              <q-date v-model="taskToSubmit.dueDate">
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-date>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
+      <q-card-section>
 
-      </div>
-<!-- task time input field-->
-      <div class="row q-mb-sm">
+        <div class="row q-mb-sm">
+          <q-input
+            outlined
+            v-model="taskToSubmit.name"
+            :rules="[val => !!val || 'Field is required']"
+            ref="name"
+            class="col"
+            label="Task name" />
+        </div>
 
-      <q-input outlined label="Due Time" v-model="taskToSubmit.dueTime">
-        <template v-slot:append>
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy transition-show="scale" transition-hide="scale">
-              <q-time v-model="taskToSubmit.dueTime">
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-time>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
+        <!-- task data input field-->
+        <div class="row q-mb-sm">
 
-      </div>
+          <q-input
+            outlined
+            label="Due Date"
+            v-model="taskToSubmit.dueDate"
+          >
+            <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                  <q-date v-model="taskToSubmit.dueDate">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                    </div>
+                  </q-date>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+
+        </div>
+        <!-- task time input field-->
+        <div class="row q-mb-sm">
+
+          <q-input outlined label="Due Time" v-model="taskToSubmit.dueTime">
+            <template v-slot:append>
+              <q-icon name="access_time" class="cursor-pointer">
+                <q-popup-proxy transition-show="scale" transition-hide="scale">
+                  <q-time v-model="taskToSubmit.dueTime">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                    </div>
+                  </q-time>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+
+        </div>
 
 
-    </q-card-section>
-<!-- the end of fieldss and the submit button-->
-    <q-card-actions align="right">
-      <q-btn
-        flat
-        label="Save"
-        color="primary"
-        v-close-popup />
-    </q-card-actions>
-<!--    end of submit button-->
+      </q-card-section>
+      <!-- the end of fieldss and the submit button-->
+      <q-card-actions align="right">
+        <q-btn
+          label="Save"
+          color="primary"
+          type="submit"/>
+      </q-card-actions>
+
+    </q-form>
+
   </q-card>
 </template>
 
@@ -91,6 +97,17 @@ export default {
         dueTime: '',
         completed: false,
       }
+    }
+  },
+  methods: {
+    submitForm() {
+      this.$refs.name.validate()
+      if(!this.$refs.name.hasErrors) {
+        this.submitTask()
+      }
+    },
+    submitTask() {
+      console.log('🎂', "submitted")
     }
   }
 }
