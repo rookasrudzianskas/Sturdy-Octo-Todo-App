@@ -25,6 +25,7 @@
             outlined
             v-model="taskToSubmit.name"
             :rules="[val => !!val || 'Field is required']"
+            autofocus
             ref="name"
             class="col"
             label="Task name" />
@@ -53,7 +54,7 @@
 
         </div>
         <!-- task time input field-->
-        <div class="row q-mb-sm">
+        <div v-if="taskToSubmit.dueDate" class="row q-mb-sm">
 
           <q-input outlined label="Due Time" v-model="taskToSubmit.dueTime">
             <template v-slot:append>

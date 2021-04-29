@@ -3,6 +3,7 @@
 
 <!--    sepates each task -->
 		<q-list
+      v-if="Object.keys(tasks).length"
 			separator
 			bordered>
 <!-- the task for loop -->
