@@ -58,7 +58,7 @@
         <!-- task time input field-->
         <div v-if="taskToSubmit.dueDate" class="row q-mb-sm">
 
-          <q-input outlined label="Due Time" v-model="taskToSubmit.dueTime">
+          <q-input class="col" outlined label="Due Time" v-model="taskToSubmit.dueTime">
             <template v-slot:append>
               <q-icon v-if="taskToSubmit.dueTime" @click="taskToSubmit.dueTime = ''" name="close" class="cursor-pointer"></q-icon>
               <q-icon name="access_time" class="cursor-pointer">
