@@ -1,4 +1,5 @@
 <template>
+<!--  label to add the task -->
   <q-item
   	@click="updateTask({id: id, updates: { completed: !task.completed }})"
   	:class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
@@ -7,15 +8,15 @@
     <q-item-section side top>
       <q-checkbox v-model="task.completed" class="no-pointer-events" />
     </q-item-section>
-
+<!-- the task itself-->
     <q-item-section>
       <q-item-label
       	:class="{ 'text-strikethrough' : task.completed }">
       	{{ task.name }}
       </q-item-label>
     </q-item-section>
-
-    <q-item-section side>
+<!-- 👉 section with date, time and delete--->
+     <q-item-section side>
     	<div class="row">
     		<div class="column justify-center">
 		    	<q-icon
@@ -37,7 +38,7 @@
 	    	</div>
     	</div>
     </q-item-section>
-
+<!-- 🕵️‍♂️ delete -->
     <q-item-section side>
       <q-btn
         @click.stop="promptToDelete(id)"
@@ -56,8 +57,10 @@
 import { mapActions } from "vuex"
 	export default {
 		props: ['task', 'id'],
+    // we get actions from the store update and delete
     methods: {
 		  ...mapActions('tasks', ['updateTask', 'deleteTask']),
+      // popup to delete the task
       promptToDelete(id) {
         this.$q.dialog({
           title: 'Confirm',
@@ -65,6 +68,7 @@ import { mapActions } from "vuex"
           cancel: true,
           persistent: true
         }).onOk(() => {
+          // fire the delete task action in the store
           this.deleteTask(id)
         })
       }

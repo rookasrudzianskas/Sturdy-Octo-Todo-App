@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+// state to show all the task objects, as the objects
 const state = {
 	tasks: {
 		'ID1': {
@@ -24,26 +24,35 @@ const state = {
 }
 
 const mutations = {
+  // fires then the action upadteTask fires to update the task
   updateTask(state, payload) {
     // console.log('🚀', payload)
+    // assigns all the updates to the task
     Object.assign(state.tasks[payload.id], payload.updates)
   },
+  // fires then the action is fired deleteTask, to delete the task
   deleteTask(state, id) {
     // console.log('🚀', id)
+    // just deletes the task from tasks object by id
     Vue.delete(state.tasks, id)
   }
 }
 
 const actions = {
+  // is fired from the task.vue to update the task
   updateTask({ commit }, payload) {
+    // fires the mutation
     commit('updateTask', payload)
   },
+  // is called to delete task from taks.vue
   deleteTask({commit}, id) {
+    // fires the mutation
     commit('deleteTask', id)
   }
 }
 
 const getters = {
+  //gets all the tasks from tasks state object and returs to use and display in the app
 	tasks: (state) => {
 		return state.tasks
 	}

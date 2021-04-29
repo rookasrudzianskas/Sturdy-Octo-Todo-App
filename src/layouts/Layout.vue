@@ -2,14 +2,14 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-
+<!-- top things-->
         <q-toolbar-title class="absolute-center">
           Awesome Todo
         </q-toolbar-title>
 
       </q-toolbar>
     </q-header>
-
+<!-- footer-->
     <q-footer>
       <q-tabs>
         <q-route-tab
@@ -20,7 +20,7 @@
           :label="nav.label" />
       </q-tabs>
     </q-footer>
-
+<!-- and the section with navigation-->
     <q-drawer
       v-model="leftDrawerOpen"
       :breakpoint="767"
@@ -45,7 +45,7 @@
             <q-item-label>{{ nav.label }}</q-item-label>
           </q-item-section>
         </q-item>
-        
+
       </q-list>
     </q-drawer>
 
@@ -89,7 +89,7 @@
       display: none;
     }
   }
-  
+
   .q-drawer {
     .q-router-link--exact-active {
       color: white !important;

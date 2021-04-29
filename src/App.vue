@@ -11,6 +11,7 @@ export default {
 </script>
 
 <style>
+/* just line to show the completed tasks*/
 	.text-strikethrough {
 		text-decoration: line-through;
 	}

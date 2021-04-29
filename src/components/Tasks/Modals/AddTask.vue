@@ -1,5 +1,8 @@
 <template>
   <q-card>
+
+<!--    laebel to add the task with modal, inputs and so on-->
+
     <q-card-section class="row">
       <div class="text-h6">Add Task</div>
       <q-space />
@@ -11,7 +14,7 @@
         icon="close" />
 
     </q-card-section>
-
+<!-- task name input field-->
     <q-card-section>
 
       <div class="row q-mb-sm">
@@ -22,7 +25,7 @@
         label="Task name" />
       </div>
 
-
+<!-- task data input field-->
       <div class="row q-mb-sm">
 
       <q-input
@@ -44,7 +47,7 @@
       </q-input>
 
       </div>
-
+<!-- task time input field-->
       <div class="row q-mb-sm">
 
       <q-input outlined label="Due Time" v-model="taskToSubmit.dueTime">
@@ -65,7 +68,7 @@
 
 
     </q-card-section>
-
+<!-- the end of fieldss and the submit button-->
     <q-card-actions align="right">
       <q-btn
         flat
@@ -73,6 +76,7 @@
         color="primary"
         v-close-popup />
     </q-card-actions>
+<!--    end of submit button-->
   </q-card>
 </template>
 
@@ -80,6 +84,7 @@
 export default {
   data() {
     return {
+      // methot to submit the task
       taskToSubmit: {
         name: '',
         dueDate: '',
