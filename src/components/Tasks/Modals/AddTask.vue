@@ -14,7 +14,7 @@
 
     <q-card-section>
 
-      <div class=" q-mb-sm">
+      <div class="row q-mb-sm">
       <q-input
         outlined
         v-model="taskToSubmit.name"
