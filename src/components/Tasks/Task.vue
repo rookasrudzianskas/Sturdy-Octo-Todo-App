@@ -57,7 +57,7 @@ import { mapActions } from "vuex"
 	export default {
 		props: ['task', 'id'],
     methods: {
-		  ...mapActions('tasks', ['updateTask']),
+		  ...mapActions('tasks', ['updateTask', 'deleteTask']),
       promptToDelete(id) {
         this.$q.dialog({
           title: 'Confirm',
@@ -65,7 +65,7 @@ import { mapActions } from "vuex"
           cancel: true,
           persistent: true
         }).onOk(() => {
-          console.log('Deleted')
+          this.deleteTask(id)
         })
       }
     }
