@@ -40,7 +40,7 @@
 	export default {
 	  data() {
 	    return {
-        showAddTask: false
+        showAddTask: true
       }
     },
 		computed: {

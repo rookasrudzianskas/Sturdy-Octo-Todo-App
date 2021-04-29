@@ -1,21 +1,8 @@
 <template>
   <q-card>
 
-<!--    laebel to add the task with modal, inputs and so on-->
-
-    <q-card-section class="row">
-      <div class="text-h6">Add Task</div>
-      <q-space />
-      <q-btn
-        v-close-popup
-        flat
-        round
-        dense
-        icon="close" />
-    </q-card-section>
-
 <!--    form element -->
-
+<modal-header></modal-header>
     <q-form @submit.prevent="submitForm">
 
       <q-card-section>
@@ -121,6 +108,9 @@ export default {
       this.taskToSubmit.dueDate = ''
       this.taskToSubmit.dueTime = ''
     }
+  },
+  components: {
+    'modal-header': require('components/Tasks/Modals/Shared/ModalHeader.vue').default
   }
 }
 </script>
