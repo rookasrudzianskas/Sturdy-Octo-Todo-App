@@ -38,6 +38,7 @@ const mutations = {
     // just deletes the task from tasks object by id
     Vue.delete(state.tasks, id)
   },
+  // adds the task from the modal to the state in the store
   addTask(state, payload) {
     Vue.set(state.tasks, payload.id, payload.task)
   }
@@ -54,6 +55,7 @@ const actions = {
     // fires the mutation
     commit('deleteTask', id)
   },
+  // gets the task from the add task modal and commits to the mutations with the payload, to the following it with id
   addTask({commit}, task) {
     let taskId = uid()
     let payload = {

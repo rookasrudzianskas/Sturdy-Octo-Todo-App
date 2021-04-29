@@ -1,9 +1,11 @@
 <template>
   <q-page class="q-pa-md">
+
+<!--    sepates each task -->
 		<q-list
 			separator
 			bordered>
-
+<!-- the task for loop -->
 			<task
 				v-for="(task, key) in tasks"
 		  	:key="key"
@@ -11,7 +13,7 @@
 		  	:id="key"></task>
 
 		</q-list>
-
+<!-- add task button-->
     <div class="absolute-bottom text-center q-mb-lg">
       <q-btn
         @click="showAddTask = true"
