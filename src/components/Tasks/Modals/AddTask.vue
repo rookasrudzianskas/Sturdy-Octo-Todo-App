@@ -38,10 +38,10 @@
           <q-input
             outlined
             label="Due Date"
-            v-model="taskToSubmit.dueDate"
-            clearable
+            v-model="taskToSubmit.dueDate"s
           >
             <template v-slot:append>
+              <q-icon v-if="taskToSubmit.dueDate" @click="clearDueDate" name="close" class="cursor-pointer"></q-icon>
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
                   <q-date v-model="taskToSubmit.dueDate">
@@ -58,8 +58,9 @@
         <!-- task time input field-->
         <div v-if="taskToSubmit.dueDate" class="row q-mb-sm">
 
-          <q-input clearable outlined label="Due Time" v-model="taskToSubmit.dueTime">
+          <q-input outlined label="Due Time" v-model="taskToSubmit.dueTime">
             <template v-slot:append>
+              <q-icon v-if="taskToSubmit.dueTime" @click="taskToSubmit.dueTime = ''" name="close" class="cursor-pointer"></q-icon>
               <q-icon name="access_time" class="cursor-pointer">
                 <q-popup-proxy transition-show="scale" transition-hide="scale">
                   <q-time v-model="taskToSubmit.dueTime">
@@ -115,6 +116,10 @@ export default {
     submitTask() {
       this.addTask(this.taskToSubmit)
       this.$emit('close')
+    },
+    clearDueDate() {
+      this.taskToSubmit.dueDate = ''
+      this.taskToSubmit.dueTime = ''
     }
   }
 }
