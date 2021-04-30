@@ -8,7 +8,7 @@
         <modal-task-name :name.sync="taskToSubmit.name"></modal-task-name>
         <!-- task data input field-->
 
-        <modal-due-date :dueDate.sync="taskToSubmit.dueDate"/>
+        <modal-due-date :dueDate.sync="taskToSubmit.dueDate" @clear="clearDueDate"/>
 
         <!-- task time input field-->
         <div v-if="taskToSubmit.dueDate" class="row q-mb-sm">
