@@ -14,6 +14,20 @@
 		  	:id="key"></task>
 
 		</q-list>
+    <hr>
+    <q-list
+      v-if="Object.keys(tasksCompleted).length"
+      separator
+      bordered>
+      <!-- the task for loop -->
+      <task
+        v-for="(task, key) in tasksCompleted"
+        :key="key"
+        :task="task"
+        :id="key"></task>
+
+    </q-list>
+
 <!-- add task button-->
     <div class="absolute-bottom text-center q-mb-lg">
       <q-btn
@@ -44,7 +58,7 @@
       }
     },
 		computed: {
-			...mapGetters('tasks', ['tasksTodo'])
+			...mapGetters('tasks', ['tasksTodo', 'tasksCompleted'])
 		},
 		components: {
 			'task' : require('components/Tasks/Task.vue').default,
