@@ -7,28 +7,9 @@
       <q-card-section>
         <modal-task-name :name.sync="taskToSubmit.name"></modal-task-name>
         <!-- task data input field-->
-        <div class="row q-mb-sm">
 
-          <q-input
-            outlined
-            label="Due Date"
-            v-model="taskToSubmit.dueDate"s
-          >
-            <template v-slot:append>
-              <q-icon v-if="taskToSubmit.dueDate" @click="clearDueDate" name="close" class="cursor-pointer"></q-icon>
-              <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="taskToSubmit.dueDate">
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
-                    </div>
-                  </q-date>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
+        <modal-due-date :dueDate.sync="taskToSubmit.dueDate"/>
 
-        </div>
         <!-- task time input field-->
         <div v-if="taskToSubmit.dueDate" class="row q-mb-sm">
 
@@ -101,6 +82,7 @@ export default {
   components: {
     'modal-header': require('components/Tasks/Modals/Shared/ModalHeader.vue').default,
     'modal-task-name': require('components/Tasks/Modals/Shared/ModalTaskName.vue').default,
+    'modal-due-date': require('components/Tasks/Modals/Shared/ModalDueDate.vue').default,
   }
 }
 </script>
