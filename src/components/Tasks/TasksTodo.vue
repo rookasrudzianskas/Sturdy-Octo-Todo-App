@@ -2,7 +2,6 @@
 <div>
   <list-header bgColor="bg-orange-4">TODO</list-header>
   <q-list
-    v-if="Object.keys(tasksTodo).length"
     separator
     bordered>
     <!-- the task for loop -->

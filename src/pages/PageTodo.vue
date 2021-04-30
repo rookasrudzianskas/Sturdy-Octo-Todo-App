@@ -2,9 +2,9 @@
   <q-page class="q-pa-md">
 
 <!--    sepates each task -->
-<tasks-todo :tasksTodo="tasksTodo" />
+<tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
 
-<tasks-completed :tasksCompleted="tasksCompleted" />
+<tasks-completed v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
 <!-- add task button-->
     <div class="absolute-bottom text-center q-mb-lg">
       <q-btn

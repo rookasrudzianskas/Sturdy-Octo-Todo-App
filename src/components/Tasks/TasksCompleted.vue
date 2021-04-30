@@ -2,7 +2,6 @@
   <div class="q-mt-lg">
     <list-header bgColor="bg-green-4">COMPLETED</list-header>
   <q-list
-    v-if="Object.keys(tasksCompleted).length"
     separator
     bordered>
     <!-- the task for loop -->
