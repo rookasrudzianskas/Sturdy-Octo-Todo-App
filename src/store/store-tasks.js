@@ -68,8 +68,14 @@ const actions = {
 
 const getters = {
   //gets all the tasks from tasks state object and returs to use and display in the app
-	tasks: (state) => {
-		return state.tasks
+	tasksTodo: (state) => {
+		let tasks = {}
+    Object.keys(state.tasks).forEach(function (key) {
+      let task = state.tasks[key]
+      console.log(task);
+    })
+    // console.log(Object.keys(state.tasks))
+    return tasks
 	}
 }
 

@@ -3,12 +3,12 @@
 
 <!--    sepates each task -->
 		<q-list
-      v-if="Object.keys(tasks).length"
+      v-if="Object.keys(tasksTodo).length"
 			separator
 			bordered>
 <!-- the task for loop -->
 			<task
-				v-for="(task, key) in tasks"
+				v-for="(task, key) in tasksTodo"
 		  	:key="key"
 		  	:task="task"
 		  	:id="key"></task>
@@ -44,7 +44,7 @@
       }
     },
 		computed: {
-			...mapGetters('tasks', ['tasks'])
+			...mapGetters('tasks', ['tasksTodo'])
 		},
 		components: {
 			'task' : require('components/Tasks/Task.vue').default,
