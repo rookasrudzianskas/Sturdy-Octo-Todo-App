@@ -5,42 +5,21 @@
 <modal-header>Add Task</modal-header>
     <q-form @submit.prevent="submitForm">
       <q-card-section>
-        <modal-task-name :name.sync="taskToSubmit.name"></modal-task-name>
+
+        <modal-task-name :name.sync="taskToSubmit.name" ref="modalTaskName"></modal-task-name>
+
         <!-- task data input field-->
 
         <modal-due-date :dueDate.sync="taskToSubmit.dueDate" @clear="clearDueDate"/>
 
         <!-- task time input field-->
-        <div v-if="taskToSubmit.dueDate" class="row q-mb-sm">
 
-          <q-input class="col" outlined label="Due Time" v-model="taskToSubmit.dueTime">
-            <template v-slot:append>
-              <q-icon v-if="taskToSubmit.dueTime" @click="taskToSubmit.dueTime = ''" name="close" class="cursor-pointer"></q-icon>
-              <q-icon name="access_time" class="cursor-pointer">
-                <q-popup-proxy transition-show="scale" transition-hide="scale">
-                  <q-time v-model="taskToSubmit.dueTime">
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
-                    </div>
-                  </q-time>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
-
-        </div>
-
+        <modal-due-time v-if="taskToSubmit.dueDate" :dueTime.sync="taskToSubmit.dueTime"/>
 
       </q-card-section>
       <!-- the end of fieldss and the submit button-->
-      <q-card-actions align="right">
-        <q-btn
-          label="Save"
-          color="primary"
-          type="submit"/>
-      </q-card-actions>
 
-      <pre>{{  taskToSubmit }}</pre>
+      <modal-buttons></modal-buttons>
 
     </q-form>
 
@@ -65,8 +44,8 @@ export default {
   methods: {
     ...mapActions('tasks', ['addTask']),
     submitForm() {
-      this.$refs.name.validate()
-      if(!this.$refs.name.hasErrors) {
+      this.$refs.modalTaskName.$refs.name.validate()
+      if(!this.$refs.modalTaskName.$refs.name.hasErrors) {
         this.submitTask()
       }
     },
@@ -83,6 +62,8 @@ export default {
     'modal-header': require('components/Tasks/Modals/Shared/ModalHeader.vue').default,
     'modal-task-name': require('components/Tasks/Modals/Shared/ModalTaskName.vue').default,
     'modal-due-date': require('components/Tasks/Modals/Shared/ModalDueDate.vue').default,
+    'modal-due-time': require('components/Tasks/Modals/Shared/ModalDueTime.vue').default,
+    'modal-buttons': require('components/Tasks/Modals/Shared/ModalButtons.vue').default,
   }
 }
 </script>
