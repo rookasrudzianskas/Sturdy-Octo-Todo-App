@@ -1,8 +1,12 @@
 <template>
   <q-page class="q-pa-md">
 
+<no-tasks
+  v-if="!Object.keys(tasksTodo).length"
+    ></no-tasks>
+
 <!--    sepates each task -->
-<tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
+<tasks-todo v-else :tasksTodo="tasksTodo" />
 
 <tasks-completed v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
 <!-- add task button-->
@@ -37,10 +41,16 @@
 		computed: {
 			...mapGetters('tasks', ['tasksTodo', 'tasksCompleted'])
 		},
+    mounted() {
+      this.$root.$on('showAddTask', () => {
+        this.showAddTask = true
+      })
+    },
 		components: {
 			'add-task' : require('components/Tasks/Modals/AddTask.vue').default,
 			'tasks-todo' : require('components/Tasks/TasksTodo.vue').default,
 			'tasks-completed' : require('components/Tasks/TasksCompleted.vue').default,
+			'no-tasks' : require('components/Tasks/NoTasks.vue').default,
 		}
 	}
 </script>
