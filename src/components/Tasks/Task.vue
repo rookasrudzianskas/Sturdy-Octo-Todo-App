@@ -40,6 +40,15 @@
     </q-item-section>
 <!-- 🕵️‍♂️ delete -->
     <q-item-section side>
+<div class="row">
+      <q-btn
+        @click.stop="showEditTask = true"
+        flat
+        round
+        dense
+        color="primary"
+        icon="edit" />
+
       <q-btn
         @click.stop="promptToDelete(id)"
         flat
@@ -47,8 +56,12 @@
         dense
         color="red"
         icon="delete" />
-
+</div>
     </q-item-section>
+
+    <q-dialog v-model="showEditTask">
+      <edit-task @close="showEditTask = false" />
+    </q-dialog>
 
   </q-item>
 </template>
@@ -57,6 +70,11 @@
 import { mapActions } from "vuex"
 	export default {
 		props: ['task', 'id'],
+    data() {
+		  return {
+		    showEditTask: false
+      }
+    },
     // we get actions from the store update and delete
     methods: {
 		  ...mapActions('tasks', ['updateTask', 'deleteTask']),
@@ -72,6 +90,9 @@ import { mapActions } from "vuex"
           this.deleteTask(id)
         })
       }
+    },
+    components: {
+		  'edit-task': require('../Tasks/Modals/EditTask.vue').default
     }
 	}
 </script>
