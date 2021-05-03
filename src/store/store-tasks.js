@@ -22,7 +22,8 @@ const state = {
 			dueDate: '2019/05/14',
 			dueTime: '16:00'
 		}
-	}
+	},
+  search: "",
 }
 
 const mutations = {
@@ -41,6 +42,9 @@ const mutations = {
   // adds the task from the modal to the state in the store
   addTask(state, payload) {
     Vue.set(state.tasks, payload.id, payload.task)
+  },
+  setSearch(state, value) {
+    state.search = value
   }
 }
 
@@ -63,6 +67,9 @@ const actions = {
       task: task,
     }
     commit('addTask', payload)
+  },
+  setSearch({ commit }, value) {
+    commit('setSearch', value)
   }
 }
 
