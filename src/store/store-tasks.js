@@ -74,11 +74,27 @@ const actions = {
 }
 
 const getters = {
+  tasksFiltered: (state) => {
+    let tasksFiltered = {}
+    if (state.search) {
+      // poopulate empty object
+      Object.keys(state.tasks).forEach(function(key) {
+        let task = state.tasks[key]
+        if(task.name.includes(state.search)) {
+          tasksFiltered[key] = task
+        }
+      })
+      return tasksFiltered
+    }
+
+    return  state.tasks
+  },
   //gets all the tasks from tasks state object and returs to use and display in the app
-	tasksTodo: (state) => {
+	tasksTodo: (state, getters) => {
+    let tasksFiltered = getters.tasksFiltered
 		let tasks = {}
-    Object.keys(state.tasks).forEach(function (key) {
-      let task = state.tasks[key];
+    Object.keys(tasksFiltered).forEach(function (key) {
+      let task = tasksFiltered[key];
       if(!task.completed) {
         tasks[key] = task
       }
@@ -87,10 +103,11 @@ const getters = {
     return tasks
 	},
 
-  tasksCompleted: (state) => {
+  tasksCompleted: (state, getters) => {
+    let tasksFiltered = getters.tasksFiltered
     let tasks = {}
-    Object.keys(state.tasks).forEach(function (key) {
-      let task = state.tasks[key];
+    Object.keys(tasksFiltered).forEach(function (key) {
+      let task = tasksFiltered[key];
       if(task.completed) {
         tasks[key] = task
       }
