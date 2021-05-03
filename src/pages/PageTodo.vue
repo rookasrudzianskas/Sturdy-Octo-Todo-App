@@ -6,15 +6,16 @@
   </div>
 
     <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">No search Results</p>
+<div class="relative-position">
+  <no-tasks
+    v-if="!Object.keys(tasksTodo).length && !search"
+      ></no-tasks>
 
-<no-tasks
-  v-if="!Object.keys(tasksTodo).length && !search"
-    ></no-tasks>
+  <!--    sepates each task -->
+  <tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
 
-<!--    sepates each task -->
-<tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
-
-<tasks-completed v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
+  <tasks-completed v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
+</div>
 <!-- add task button-->
     <div class="absolute-bottom text-center q-mb-lg">
       <q-btn

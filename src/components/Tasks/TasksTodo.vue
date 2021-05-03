@@ -1,18 +1,24 @@
 <template>
-<div>
-  <list-header bgColor="bg-orange-4">TODO</list-header>
-  <q-list
-    separator
-    bordered>
-    <!-- the task for loop -->
-    <task
-      v-for="(task, key) in tasksTodo"
-      :key="key"
-      :task="task"
-      :id="key"></task>
+  <transition
+     appear
+      enter-active-class="animated zoomIn"
+      leave-active-class="animated zoomOut absolute-top"
+    >
+  <div>
+    <list-header bgColor="bg-orange-4">TODO</list-header>
+    <q-list
+      separator
+      bordered>
+      <!-- the task for loop -->
+      <task
+        v-for="(task, key) in tasksTodo"
+        :key="key"
+        :task="task"
+        :id="key"></task>
 
-  </q-list>
-</div>
+    </q-list>
+  </div>
+  </transition>
 </template>
 
 
