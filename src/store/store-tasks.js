@@ -24,6 +24,7 @@ const state = {
 		}
 	},
   search: "",
+  sort: 'dueDate'
 }
 
 const mutations = {
@@ -79,8 +80,8 @@ const getters = {
 
     keysOrdered = Object.keys(state.tasks)
     keysOrdered.sort((a, b) => {
-      let taskAProp = state.tasks[a].name.toLowerCase(),
-        taskBProp = state.tasks[b].name.toLowerCase()
+      let taskAProp = state.tasks[a][state.sort].toLowerCase(),
+        taskBProp = state.tasks[b][state.sort].toLowerCase()
 
         if(taskAProp > taskBProp) {
           return 1
