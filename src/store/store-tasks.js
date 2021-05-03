@@ -79,8 +79,10 @@ const getters = {
     if (state.search) {
       // poopulate empty object
       Object.keys(state.tasks).forEach(function(key) {
-        let task = state.tasks[key]
-        if(task.name.includes(state.search)) {
+        let task = state.tasks[key],
+          taskNameLowerCase= task.name.toLowerCase(),
+          searchLowerCase = state.search.toLowerCase()
+        if(taskNameLowerCase.includes(searchLowerCase)) {
           tasksFiltered[key] = task
         }
       })
