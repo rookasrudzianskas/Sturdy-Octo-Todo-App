@@ -106,7 +106,7 @@ const { addToDate } = date
       },
       searchHighlight(value, search) {
         if(search) {
-          let searchRegExp = new RegExp(search, 'i')
+          let searchRegExp = new RegExp(search, 'ig')
           return value.replace(searchRegExp,(match) => {
             return '<span class="bg-yellow-6">' + match + '</span>'
           })
