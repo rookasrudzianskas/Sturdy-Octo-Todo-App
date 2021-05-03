@@ -12,8 +12,7 @@
 <!-- the task itself-->
     <q-item-section>
       <q-item-label
-      	:class="{ 'text-strikethrough' : task.completed }">
-      	{{ task.name }}
+      	:class="{ 'text-strikethrough' : task.completed }" v-html="$options.filters.searchHighlight(task.name, search)">
       </q-item-label>
     </q-item-section>
 <!-- 👉 section with date, time and delete--->
@@ -68,7 +67,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex"
+import { mapActions, mapState } from "vuex"
 import { date } from 'quasar'
 const { addToDate } = date
 	export default {
@@ -77,6 +76,9 @@ const { addToDate } = date
 		  return {
 		    showEditTask: false
       }
+    },
+    computed: {
+		  ...mapState('tasks', ['search']),
     },
     // we get actions from the store update and delete
     methods: {
@@ -101,6 +103,15 @@ const { addToDate } = date
 		  niceDate(value) {
 		    return date.formatDate(value, 'MMM D')
 
+      },
+      searchHighlight(value, search) {
+        if(search) {
+          let searchRegExp = new RegExp(search, 'i')
+          return value.replace(searchRegExp,(match) => {
+            return '<span class="bg-yellow-6">' + match + '</span>'
+          })
+        }
+        return value
       }
     },
     components: {
