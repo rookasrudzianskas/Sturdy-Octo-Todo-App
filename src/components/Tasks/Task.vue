@@ -33,7 +33,7 @@
           <q-item-label
           	class="row justify-end"
           	caption>
-          	<small>{{ task.dueTime }}</small>
+          	<small>{{ taskDueTime }}</small>
           </q-item-label>
 	    	</div>
     	</div>
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex"
+import { mapActions, mapState, mapGetters } from "vuex"
 import { date } from 'quasar'
 const { addToDate } = date
 	export default {
@@ -79,6 +79,14 @@ const { addToDate } = date
     },
     computed: {
 		  ...mapState('tasks', ['search']),
+      ...mapGetters('settings', ['settings']),
+      taskDueTime() {
+        if(this.settings.show12HourTimeFormat) {
+          // 2021/54/343 23:43
+          return date.formatDate(this.task.dueDate + ' ' + this.task.dueTime, 'h:mmA')
+        }
+		    return this.task.dueTime
+      }
     },
     // we get actions from the store update and delete
     methods: {
