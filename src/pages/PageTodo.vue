@@ -18,10 +18,11 @@
       <tasks-completed class="q-mb-xl" v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
     </q-scroll-area>
 <!-- add task button-->
-    <div class="absolute-bottom text-center q-mb-lg">
+    <div class="absolute-bottom text-center q-mb-lg no-pointer-events">
       <q-btn
         @click="showAddTask = true"
         round
+        class="all-pointer-events"
         color="primary"
         size="24px"
         icon="add"
