@@ -3,12 +3,15 @@
   <div class="row q-mb-lg">
       <search />
   </div>
+
+    <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">No search Results</p>
+
 <no-tasks
-  v-if="!Object.keys(tasksTodo).length"
+  v-if="!Object.keys(tasksTodo).length && !search"
     ></no-tasks>
 
 <!--    sepates each task -->
-<tasks-todo v-else :tasksTodo="tasksTodo" />
+<tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
 
 <tasks-completed v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
 <!-- add task button-->
@@ -32,7 +35,7 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+	import { mapGetters, mapState } from 'vuex'
   import Search from "../components/Tools/Search";
 
 	export default {
@@ -42,7 +45,8 @@
       }
     },
 		computed: {
-			...mapGetters('tasks', ['tasksTodo', 'tasksCompleted'])
+			...mapGetters('tasks', ['tasksTodo', 'tasksCompleted']),
+      ...mapState('tasks', ['search'])
 		},
     mounted() {
       this.$root.$on('showAddTask', () => {
