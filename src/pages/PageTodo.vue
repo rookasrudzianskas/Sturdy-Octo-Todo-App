@@ -1,21 +1,22 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page>
+    <div class="q-pa-md absolute full-width full-height column">
   <div class="row q-mb-lg">
       <search />
     <sort/>
   </div>
 
     <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">No search Results</p>
-<div class="relative-position">
-  <no-tasks
-    v-if="!Object.keys(tasksTodo).length && !search"
-      ></no-tasks>
+    <q-scroll-area class="q-scroll-area-tasks">
+      <no-tasks
+        v-if="!Object.keys(tasksTodo).length && !search"
+          ></no-tasks>
 
-  <!--    sepates each task -->
-  <tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
+      <!--    sepates each task -->
+      <tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
 
-  <tasks-completed v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
-</div>
+      <tasks-completed class="q-mb-xl" v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
+    </q-scroll-area>
 <!-- add task button-->
     <div class="absolute-bottom text-center q-mb-lg">
       <q-btn
@@ -27,7 +28,7 @@
       />
     </div>
 
-
+    </div>
 
     <q-dialog v-model="showAddTask">
       <add-task @close="showAddTask = false" />
@@ -68,5 +69,8 @@
 </script>
 
 <style>
-
+.q-scroll-area-tasks {
+  display: flex;
+  flex-grow: 1;
+}
 </style>
