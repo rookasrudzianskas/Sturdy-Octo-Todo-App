@@ -5,7 +5,7 @@
     <template v-slot:avatar>
       <q-icon name="account_circle" color="primary" />
     </template>
-    Register to access your todo's anywhere
+    {{ tab | titleCase }} to access your todo's anywhere
 
   </q-banner>
     </div>
@@ -24,7 +24,7 @@
 
     <div class="row">
       <q-space />
-      <q-btn type="submit" color="primary" label="Register" />
+      <q-btn type="submit" color="primary" :label="tab" />
 
     </div>
 
@@ -52,12 +52,17 @@ export default {
       this.$refs.password.validate()
 
       if(!this.$refs.email.hasError && !this.$refs.password.hasError) {
-        if(this.tab == 'login') {
+        if(this.tab === 'login') {
           console.log('log in')
         } else {
           console.log('register')
         }
       }
+    }
+  },
+  filters: {
+    titleCase(value) {
+      return value.charAt(0).toUpperCase() + value.slice(1)
     }
   }
 }
