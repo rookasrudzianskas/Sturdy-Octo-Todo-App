@@ -55,6 +55,8 @@ module.exports = function (ctx) {
       plugins: [
         'Notify',
         'Dialog',
+        'LocalStorage',
+        'SessionStorage',
       ]
 
       // iconSet: 'ionicons-v4'

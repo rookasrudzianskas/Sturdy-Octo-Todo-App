@@ -1,3 +1,4 @@
+import { LocalStorage } from 'quasar'
 
 // state to show all the task objects, as the objects
 const state = {
@@ -14,16 +15,30 @@ const mutations = {
 
   showTasksInOneList(state, value) {
     state.settings.showTasksInOneList = value
+  },
+  setSettings(state, settings) {
+    Object.assign(state.settings, settings)
   }
 }
 
 const actions = {
-  setShow12HourTimeFormat({ commit }, value) {
+  setShow12HourTimeFormat({ commit, dispatch }, value) {
     commit('show12HourTimeFormat', value)
+    dispatch('saveSettings')
   },
-  setShowTasksInOneList({ commit }, value) {
+  setShowTasksInOneList({ commit,dispatch }, value) {
     commit('showTasksInOneList', value)
+    dispatch('saveSettings')
   },
+  saveSettings({ state }) {
+    LocalStorage.set('settings', state.settings)
+  },
+  getSettings({ commit }) {
+    let settings = LocalStorage.getItem('settings')
+    if (settings) {
+      commit('setSettings', settings)
+    }
+  }
 }
 
 const getters = {
