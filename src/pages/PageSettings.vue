@@ -12,6 +12,18 @@
 
         </q-item-section>
       </q-item>
+
+
+      <q-item tag="label" v-ripple>
+        <q-item-section>
+          <q-item-label>Show Tasks in one list</q-item-label>
+        </q-item-section>
+        <q-item-section side>
+          <q-toggle v-model="showTasksInOneList" color="blue" />
+
+        </q-item-section>
+      </q-item>
+
     </q-list>
   </q-page>
 </template>
@@ -31,10 +43,19 @@ import {mapGetters, mapActions} from 'vuex'
           this.setShow12HourTimeFormat(value)
 
         }
+      },
+      showTasksInOneList: {
+        get() {
+          return this.settings.showTasksInOneList
+        },
+        set(value) {
+          // trigger an action
+          this.setShowTasksInOneList(value)
+        }
       }
     },
     methods: {
-      ...mapActions('settings', ['setShow12HourTimeFormat'])
+      ...mapActions('settings', ['setShow12HourTimeFormat', 'setShowTasksInOneList'])
 
     }
 	}
