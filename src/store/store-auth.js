@@ -1,5 +1,6 @@
 import { firebaseAuth } from "../boot/firebase";
 import { LocalStorage } from "quasar";
+import { showErrorMessage } from "../functions/function-show-error-message";
 import firebase from "firebase";
 
 // state to show all the task objects, as the objects
@@ -20,7 +21,7 @@ const actions = {
         console.log(response)
       })
       .catch(error => {
-        console.log(error.message)
+        showErrorMessage(error.message)
       })
   },
   loginUser({}, payload) {
@@ -29,7 +30,7 @@ const actions = {
         console.log(response)
       })
       .catch(error => {
-        console.log(error.message)
+        showErrorMessage(error.message)
       })
   },
 
