@@ -12,13 +12,13 @@
 
     <div class="row q-mb-md">
 
-      <q-input outlined v-model="formData.email" class="col" label="Email" stack-labels :rules="[ val => isValidEmailAddress(val) || 'Please use the valid email address']" lazy-rules/>
+      <q-input ref="email" outlined v-model="formData.email" class="col" label="Email" stack-labels :rules="[ val => isValidEmailAddress(val) || 'Please use the valid email address']" lazy-rules/>
 
     </div>
 
     <div class="row q-mb-md">
 
-      <q-input outlined v-model="formData.password" class="col" type="password" label="Password" stack-labels :rules="[ val => val.length >= 6 || 'Please use at least 6 characters']" lazy-rules/>
+      <q-input ref="password" outlined v-model="formData.password" class="col" type="password" label="Password" stack-labels :rules="[ val => val.length >= 6 || 'Please use at least 6 characters']" lazy-rules/>
 
     </div>
 
@@ -33,6 +33,7 @@
 </template>
 <script>
 export default {
+  props: ['tab'],
   data() {
     return {
       formData: {
@@ -47,7 +48,16 @@ export default {
       return re.test(String(email).toLowerCase());
     },
     submitForm() {
+      this.$refs.email.validate()
+      this.$refs.password.validate()
 
+      if(!this.$refs.email.hasError && !this.$refs.password.hasError) {
+        if(this.tab == 'login') {
+          console.log('log in')
+        } else {
+          console.log('register')
+        }
+      }
     }
   }
 }
