@@ -33,13 +33,15 @@ const actions = {
   },
 
   handleAuthStateChanged({ commit }) {
-    firebaseAuth.onAuthStateChanged(function(user) {
+    firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
         commit('setLoggedIn', true)
+        this.$router.push('/')
 
       } else {
         commit('setLoggedIn', false)
+        this.$router.replace('/auth')
       }
     });
   },
