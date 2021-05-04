@@ -48,6 +48,14 @@
       </q-item>
 
 
+      <q-item @click="emailUs" tag="label" v-ripple>
+        <q-item-section>
+          <q-item-label>Email us</q-item-label>
+        </q-item-section>
+        <q-item-section side>
+          <q-icon name="chevron_right"/>
+        </q-item-section>
+      </q-item>
 
     </q-list>
 
@@ -88,6 +96,9 @@ import { openURL } from 'quasar'
       visitWebsite() {
         openURL('https://www.byrookas.com')
 
+      },
+      emailUs() {
+        window.location.href = 'mailto:hello@awesometodo?subject=Awesome Todo Feedback'
       }
 
     }
