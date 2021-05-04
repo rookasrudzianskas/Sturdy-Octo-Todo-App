@@ -5,7 +5,7 @@
       leave-active-class="animated zoomOut absolute-top"
     >
   <div>
-    <list-header bgColor="bg-orange-4">TODO</list-header>
+    <list-header v-if="!settings.showTasksInOneList" bgColor="bg-orange-4">TODO</list-header>
     <q-list
       separator
       bordered>
@@ -23,8 +23,13 @@
 
 
 <script>
+import { mapGetters } from "vuex"
+
 export default  {
   props: ['tasksTodo'],
+  computed: {
+    ...mapGetters('settings', ['settings'])
+  },
   components: {
     'task' : require('components/Tasks/Task.vue').default,
     'list-header' : require('components/Shared/ListHeader.vue').default,

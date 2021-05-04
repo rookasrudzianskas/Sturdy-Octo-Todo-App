@@ -6,10 +6,10 @@
     <sort/>
   </div>
 
-    <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">No search Results</p>
+    <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length ">No search Results</p>
     <q-scroll-area class="q-scroll-area-tasks">
       <no-tasks
-        v-if="!Object.keys(tasksTodo).length && !search"
+        v-if="!Object.keys(tasksTodo).length && !search && !settings.showTasksInOneList"
           ></no-tasks>
 
       <!--    sepates each task -->
@@ -50,7 +50,8 @@
     },
 		computed: {
 			...mapGetters('tasks', ['tasksTodo', 'tasksCompleted']),
-      ...mapState('tasks', ['search'])
+			...mapGetters('settings', ['settings']),
+      ...mapState('tasks', ['search']),
 		},
     mounted() {
       this.$root.$on('showAddTask', () => {
