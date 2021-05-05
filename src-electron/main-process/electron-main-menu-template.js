@@ -1,4 +1,5 @@
 import {app} from "electron";
+import {mainWindow} from "./electron-main";
 
 export const menuTemplate = [
   {
@@ -52,6 +53,13 @@ if (process.platform === 'darwin') {
     label: app.getName(),
     submenu: [
       { role: 'about' },
+      {
+        label: "Settings",
+        accelerator: 'CmdOrCtrl+,',
+        click() {
+          mainWindow.webContents.send("show-settings")
+        }
+      },
       { type: 'separator' },
       { role: 'services' },
       { type: 'separator' },

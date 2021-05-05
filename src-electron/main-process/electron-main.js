@@ -17,7 +17,7 @@ if (process.env.PROD) {
 
 // variables constants
 
-let mainWindow
+export let mainWindow
 
 
 const menu = Menu.buildFromTemplate(menuTemplate)
