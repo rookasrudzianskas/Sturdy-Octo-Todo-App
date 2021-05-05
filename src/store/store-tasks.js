@@ -1,27 +1,27 @@
 import Vue from 'vue'
 import { uid } from 'quasar'
-
+import { firebaseDb, firebaseAuth } from "../boot/firebase";
 // state to show all the task objects, as the objects
 const state = {
 	tasks: {
-		'ID1': {
-			name: 'Go to shop',
-			completed: false,
-			dueDate: '2019/05/12',
-			dueTime: '18:30'
-		},
-		'ID2': {
-			name: 'Get bananas',
-			completed: false,
-			dueDate: '2019/05/13',
-			dueTime: '14:00'
-		},
-		'ID3': {
-			name: 'Get apples',
-			completed: false,
-			dueDate: '2019/05/14',
-			dueTime: '16:00'
-		}
+		// 'ID1': {
+		// 	name: 'Go to shop',
+		// 	completed: false,
+		// 	dueDate: '2019/05/12',
+		// 	dueTime: '18:30'
+		// },
+		// 'ID2': {
+		// 	name: 'Get bananas',
+		// 	completed: false,
+		// 	dueDate: '2019/05/13',
+		// 	dueTime: '14:00'
+		// },
+		// 'ID3': {
+		// 	name: 'Get apples',
+		// 	completed: false,
+		// 	dueDate: '2019/05/14',
+		// 	dueTime: '16:00'
+		// }
 
 	},
   search: "",
@@ -78,6 +78,39 @@ const actions = {
   },
   setSort({ commit }, value) {
     commit('setSort', value)
+  },
+  fbReadData({ commit }) {
+    console.log("start reading data from fb")
+    let userId = firebaseAuth.currentUser.uid
+    let userTasks = firebaseDb.ref('tasks/' + userId)
+
+    // child added
+
+    userTasks.on('child_added', snapshot => {
+      let task = snapshot.val()
+      // console.log(task)
+
+      let payload = {
+        id: snapshot.key,
+        task: task,
+      }
+
+      commit('addTask', payload)
+    })
+
+    // chold change
+
+    userTasks.on('child_changed', snapshot => {
+      let task = snapshot.val()
+      // console.log(task)
+
+      let payload = {
+        id: snapshot.key,
+        updates: task
+      }
+
+      commit('updateTask', payload)
+    })
   }
 }
 
