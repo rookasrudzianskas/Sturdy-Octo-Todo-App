@@ -50,6 +50,19 @@
           </q-item-section>
         </q-item>
 
+        <q-item
+          v-if="$q.platform.is.electron"
+          @click="quitApp"
+          class="text-grey-4 absolute-bottom"
+          clickable>
+          <q-item-section avatar>
+            <q-icon name="power_settings_new" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Quit</q-item-label>
+          </q-item-section>
+        </q-item>
+
       </q-list>
     </q-drawer>
 
@@ -86,7 +99,19 @@
     },
     methods: {
       ...mapActions('auth', ['logoutUser']),
-      openURL
+      openURL,
+      quitApp() {
+        this.$q.dialog({
+          title: 'Confirm',
+          message: 'Really quit awesome todo?',
+          cancel: true,
+          persistent: true
+        }).onOk(() => {
+          if(this.$q.platform.is.electron){
+          require('electron').ipcRenderer.send('quit-app')
+          }
+        })
+      }
     }
   }
 </script>
