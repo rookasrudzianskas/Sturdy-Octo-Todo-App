@@ -99,6 +99,9 @@ const actions = {
     // initial check for the data
     userTasks.once('value', snapshot => {
       commit('setTasksDownloaded', true)
+    }, error => {
+      showErrorMessage(error.message)
+      this.$router.replace('/auth')
     })
 
     // child added
