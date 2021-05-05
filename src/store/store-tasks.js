@@ -25,7 +25,8 @@ const state = {
 
 	},
   search: "",
-  sort: 'name'
+  sort: 'name',
+  tasksDownloaded: false,
 }
 
 const mutations = {
@@ -50,6 +51,10 @@ const mutations = {
   },
   setSort(state, value) {
     state.sort = value
+  },
+
+  setTasksDownloaded(state, value) {
+    state.tasksDownloaded = value
   },
 }
 
