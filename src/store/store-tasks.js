@@ -65,13 +65,13 @@ const actions = {
     commit('deleteTask', id)
   },
   // gets the task from the add task modal and commits to the mutations with the payload, to the following it with id
-  addTask({commit}, task) {
+  addTask({dispatch}, task) {
     let taskId = uid()
     let payload = {
       id: taskId,
       task: task,
     }
-    commit('addTask', payload)
+    dispatch('fbAddTask', payload)
   },
   setSearch({ commit }, value) {
     commit('setSearch', value)
@@ -116,10 +116,18 @@ const actions = {
 
     userTasks.on('child_removed', snapshot => {
       let taskId = snapshot.key
-      console.log("removed")
+      // console.log("removed")
 
       commit('deleteTask', taskId)
     })
+  },
+  fbAddTask({}, payload) {
+    // console.log(payload)
+    let userId = firebaseAuth.currentUser.uid
+    let taskRef = firebaseDb.ref('tasks/' + userId + '/' + payload.id)
+    console.log('add task')
+
+    taskRef.set(payload.task)
   }
 }
 
