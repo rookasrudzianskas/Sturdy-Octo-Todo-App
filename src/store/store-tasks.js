@@ -92,6 +92,7 @@ const actions = {
   fbReadData({ commit }) {
     console.log("start reading data from fb")
     let userId = firebaseAuth.currentUser.uid
+    // userId = '4b04f88c-1d67-45de-b0e8-edc4eb17869a'
     let userTasks = firebaseDb.ref('tasks/' + userId)
 
     // initial check for the data
