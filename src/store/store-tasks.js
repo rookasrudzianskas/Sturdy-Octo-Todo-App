@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { uid } from 'quasar'
 import { firebaseDb, firebaseAuth } from "../boot/firebase";
+import once from "once";
 // state to show all the task objects, as the objects
 const state = {
 	tasks: {
@@ -84,10 +85,16 @@ const actions = {
   setSort({ commit }, value) {
     commit('setSort', value)
   },
+
   fbReadData({ commit }) {
     console.log("start reading data from fb")
     let userId = firebaseAuth.currentUser.uid
     let userTasks = firebaseDb.ref('tasks/' + userId)
+
+    // initial check for the data
+    userTasks.once('value', snapshot => {
+      commit('setTasksDownloaded', true)
+    })
 
     // child added
 

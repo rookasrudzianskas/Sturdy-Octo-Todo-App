@@ -33,7 +33,12 @@
       </template>
 
       <template v-else>
-        <p>Loading</p>
+        <span class="absolute-center">
+        <q-spinner-grid
+          color="primary"
+          size="2em"
+        />
+          </span>
       </template>
     </div>
 
