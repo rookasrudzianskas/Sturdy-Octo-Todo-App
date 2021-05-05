@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { uid } from 'quasar'
 import { firebaseDb, firebaseAuth } from "../boot/firebase";
 import once from "once";
+import {showErrorMessage} from "../functions/function-show-error-message";
 // state to show all the task objects, as the objects
 const state = {
 	tasks: {
@@ -140,10 +141,15 @@ const actions = {
   fbAddTask({}, payload) {
     // console.log(payload)
     let userId = firebaseAuth.currentUser.uid
+    // userId='auth.uid == $uid'
     let taskRef = firebaseDb.ref('tasks/' + userId + '/' + payload.id)
     // console.log('add task')
 
-    taskRef.set(payload.task)
+    taskRef.set(payload.task, error => {
+      if(error) {
+        showErrorMessage(error.message)
+      }
+    })
   },
 
   fbUpdateTask({}, payload) {
@@ -152,7 +158,11 @@ const actions = {
     let taskRef = firebaseDb.ref('tasks/' + userId + '/' + payload.id)
     // console.log('add task')
 
-    taskRef.update(payload.updates)
+    taskRef.update(payload.updates, error => {
+      if(error) {
+        showErrorMessage(error.message)
+      }
+    })
   },
 
   fbDeleteTask({}, taskId) {
@@ -161,7 +171,11 @@ const actions = {
     let taskRef = firebaseDb.ref('tasks/' + userId + '/' + taskId)
     // console.log('add task')
 
-    taskRef.remove()
+    taskRef.remove( error => {
+      if(error) {
+        showErrorMessage(error.message)
+      }
+    })
   },
 }
 
