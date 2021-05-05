@@ -176,7 +176,7 @@ const actions = {
       }
     })
   },
-
+  // delete task
   fbDeleteTask({}, taskId) {
     // console.log(payload)
     let userId = firebaseAuth.currentUser.uid
