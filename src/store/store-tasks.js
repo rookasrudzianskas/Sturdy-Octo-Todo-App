@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { uid } from 'quasar'
 import { firebaseDb, firebaseAuth } from "../boot/firebase";
+import { Notify } from 'quasar'
 import once from "once";
 import {showErrorMessage} from "../functions/function-show-error-message";
 // state to show all the task objects, as the objects
@@ -151,6 +152,9 @@ const actions = {
     taskRef.set(payload.task, error => {
       if(error) {
         showErrorMessage(error.message)
+      } else {
+        Notify.create('Holly Molly, task added!')
+
       }
     })
   },
@@ -164,6 +168,13 @@ const actions = {
     taskRef.update(payload.updates, error => {
       if(error) {
         showErrorMessage(error.message)
+      } else {
+        let keys = Object.keys(payload.updates)
+        if (!(keys.includes('completed') && keys.length === 1)){
+          Notify.create('Holly Molly, task updated!')
+        }
+
+
       }
     })
   },
@@ -177,6 +188,9 @@ const actions = {
     taskRef.remove( error => {
       if(error) {
         showErrorMessage(error.message)
+      } else {
+        Notify.create('Holly Molly, task deleted!')
+
       }
     })
   },
