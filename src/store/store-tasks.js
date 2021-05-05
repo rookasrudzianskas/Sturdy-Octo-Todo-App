@@ -55,9 +55,9 @@ const mutations = {
 
 const actions = {
   // is fired from the task.vue to update the task
-  updateTask({ commit }, payload) {
+  updateTask({ dispatch }, payload) {
     // fires the mutation
-    commit('updateTask', payload)
+    dispatch('fbUpdateTask', payload)
   },
   // is called to delete task from taks.vue
   deleteTask({commit}, id) {
@@ -125,10 +125,19 @@ const actions = {
     // console.log(payload)
     let userId = firebaseAuth.currentUser.uid
     let taskRef = firebaseDb.ref('tasks/' + userId + '/' + payload.id)
-    console.log('add task')
+    // console.log('add task')
 
     taskRef.set(payload.task)
-  }
+  },
+
+  fbUpdateTask({}, payload) {
+    // console.log(payload)
+    let userId = firebaseAuth.currentUser.uid
+    let taskRef = firebaseDb.ref('tasks/' + userId + '/' + payload.id)
+    // console.log('add task')
+
+    taskRef.update(payload.updates)
+  },
 }
 
 const getters = {
