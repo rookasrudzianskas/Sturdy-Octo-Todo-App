@@ -173,8 +173,6 @@ const actions = {
         if (!(keys.includes('completed') && keys.length === 1)){
           Notify.create('Holly Molly, task updated!')
         }
-
-
       }
     })
   },
