@@ -1,4 +1,5 @@
-import { app, BrowserWindow, nativeTheme } from 'electron'
+import { app, BrowserWindow, nativeTheme, Menu } from 'electron'
+import { menuTemplate} from "./electron-main-menu-template";
 
 try {
   if (process.platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
@@ -17,6 +18,9 @@ if (process.env.PROD) {
 // variables constants
 
 let mainWindow
+
+
+const menu = Menu.buildFromTemplate(menuTemplate)
 
 //app ready
 app.on('ready', () => {
@@ -45,6 +49,7 @@ app.on('ready', () => {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  Menu.setApplicationMenu(menu)
 })
 
 // app events
