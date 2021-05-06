@@ -12,7 +12,7 @@
 
     <div class="row q-mb-md">
 
-      <q-input ref="email" outlined v-model="formData.email" class="col" label="Email" stack-labels :rules="[ val => isValidEmailAddress(val) || 'Please use the valid email address']" lazy-rules/>
+      <q-input ref="email" outlined v-model="formData.email" class="col" label="Email" stack-labels :rules="[ val => isValidEmailAddress(val) || 'Please use the valid email address']" type="email" lazy-rules/>
 
     </div>
 

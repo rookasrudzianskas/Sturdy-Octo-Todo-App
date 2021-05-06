@@ -14,7 +14,7 @@
       </q-toolbar>
     </q-header>
 <!-- footer-->
-    <q-footer>
+    <q-footer class="ilgas">
       <q-tabs>
         <q-route-tab
           v-for="nav in navs"
@@ -116,10 +116,13 @@
   }
 </script>
 
+
+
 <style lang="scss">
   @media screen and (min-width: 768px) {
     .q-footer {
       display: none;
+
     }
   }
 
@@ -128,4 +131,23 @@
       color: white !important;
     }
   }
+
+  .platform-ios {
+    .q-header {
+      padding-top: constant(safe-area-inset-top);
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .q-footer {
+      padding-bottom: constant(safe-area-inset-bottom);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+  .ilgas {
+    //width: 100px;
+    height: 100px;
+  }
+  }
+
+
 </style>
