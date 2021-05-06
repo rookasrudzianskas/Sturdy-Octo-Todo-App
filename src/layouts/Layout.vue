@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf" style="margin-bottom: 10px">
     <q-header elevated>
       <q-toolbar>
 <!-- top things-->
@@ -21,7 +21,8 @@
           :key="nav.label"
           :to="nav.to"
           :icon="nav.icon"
-          :label="nav.label" />
+          :label="nav.label"
+       />
       </q-tabs>
     </q-footer>
 <!-- and the section with navigation-->
@@ -123,7 +124,9 @@
     .q-footer {
       display: none;
 
+
     }
+
   }
 
   .q-drawer {
@@ -131,6 +134,8 @@
       color: white !important;
     }
   }
+
+
 
   .platform-ios {
     .q-header {
@@ -143,10 +148,7 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-  .ilgas {
-    //width: 100px;
-    height: 100px;
-  }
+
   }
 
 

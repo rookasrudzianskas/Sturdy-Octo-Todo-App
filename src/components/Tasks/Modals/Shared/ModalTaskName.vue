@@ -5,7 +5,7 @@
       :value="name"
       @input="$emit('update:name', $event)"
       :rules="[val => !!val || 'Field is required']"
-      autofocus
+      v-autofocus
       v-select-all
       ref="name"
       class="col"
@@ -17,10 +17,12 @@
 
 <script>
 import { selectAll } from 'src/directives/directive-select-all'
+import { autofocus } from 'src/directives/directive-autofocus'
 export default {
   props: ['name'],
   directives: {
-    selectAll
+    selectAll,
+    autofocus
 
   }
 }
