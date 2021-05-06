@@ -92,3 +92,22 @@ if (process.platform === 'darwin') {
     { role: 'front' }
   ]
 }
+
+if (process.platform === 'win32') {
+  menuTemplate.unshift({
+    label: 'File',
+    submenu: [
+      {
+        label: "Settings",
+        accelerator: 'CmdOrCtrl+,',
+        click() {
+          mainWindow.webContents.send("show-settings")
+        }
+      },
+      { type: 'separator' },
+      { role: 'quit' }
+    ]
+  })
+}
+
+
