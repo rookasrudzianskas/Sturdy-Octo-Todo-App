@@ -14,14 +14,23 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-ios": "^6.2.0",
+    "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-whitelist": "^1.3.4"
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "ios"
     ]
+  },
+  "dependencies": {
+    "add": "^2.0.6",
+    "cordova": "^10.0.0",
+    "cordova-plugin-splashscreen": "^6.0.0",
+    "plugin": "^0.3.3"
   }
 }
